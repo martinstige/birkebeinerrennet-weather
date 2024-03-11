@@ -8,9 +8,9 @@
       rel="stylesheet"
     />
     <style>
-      body{
+      body {
         padding: 30px;
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
       }
       .grid-container {
         display: grid;
@@ -20,22 +20,42 @@
         padding-bottom: 30px;
       }
     </style>
+    <script type="text/javascript">
+      function setup() {
+        const places = [
+          "1-2817008",
+          "1-144520",
+          "1-144469",
+          "10-1007854",
+          "1-143508",
+          "1-2309061",
+        ];
+
+        places.forEach((place) => {
+          // console.log("place", place);
+          const div = document.createElement("div");
+          div.className = "forecast";
+          const img = document.createElement("img");
+          img.src = `https://www.yr.no/nb/innhold/${place}/meteogram.svg`;
+
+          const href = document.createElement("a");
+          href.href =
+            `https://www.yr.no/nb/v%C3%A6rvarsel/daglig-tabell/` + place;
+          href.target = "_blank";
+          div.appendChild(href);
+          href.appendChild(img);
+          document.body.querySelector(".listing").appendChild(div);
+          document.body.appendChild(div);
+        });
+
+        window.onload = setup;
+      }
+    </script>
   </head>
-  <body>
+  <body onload="setup()">
     <div>
       <h1>Værmelding for Birkebeinerrennet</h1>
     </div>
-    <div class="grid-container">
-      
-      <img class="forecast" src="https://www.yr.no/nb/innhold/1-2817008/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/nb/innhold/1-144520/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/nb/innhold/1-144469/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/nb/innhold/10-1007854/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/nb/innhold/1-143508/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/nb/innhold/1-2309061/meteogram.svg" />
-      <img class="forecast" src="" />
-      <img class="forecast" src="" />
-      
-    </div>
+    <div class="listing"></div>
   </body>
 </html>
